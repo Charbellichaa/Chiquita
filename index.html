@@ -6,40 +6,47 @@
 <title>Happy International Girlfriend Day, Chiquita ❤️</title>
 <meta name="description" content="A love letter, a scrapbook, and a promise — for Chiquita, on International Girlfriend Day.">
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/scrapbook.css">
+<link rel="stylesheet" href="css/effects.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
-<!-- Cursor sparkle canvas -->
 <canvas id="sparkle-canvas"></canvas>
 
-<!-- ============ SECTION 1: LOADER ============ -->
+<!-- ============ LOADER ============ -->
 <section id="loader" aria-label="Loading">
-  <div class="loader-hearts" aria-hidden="true">
-    <span>❤</span><span>❤</span><span>❤</span><span>❤</span><span>❤</span>
+  <div class="loader-heart-ring">
+    <svg viewBox="0 0 90 90">
+      <defs>
+        <linearGradient id="loaderGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#c8918a"/>
+          <stop offset="1" stop-color="#d8a566"/>
+        </linearGradient>
+      </defs>
+      <circle class="ring-track" cx="45" cy="45" r="40"/>
+      <circle id="ringFill" class="ring-fill" cx="45" cy="45" r="40"/>
+    </svg>
+    <div class="loader-heart-glyph">❤</div>
   </div>
   <p class="loader-word">for Chiquita</p>
-  <div class="loader-bar-track">
-    <div class="loader-bar-fill" id="loaderFill"></div>
-  </div>
   <p class="loader-percent" id="loaderPercent">0%</p>
 </section>
 
-<!-- ============ SECTION 2: ENVELOPE ============ -->
+<!-- ============ ENVELOPE GATE ============ -->
 <section id="envelope-gate" aria-label="Open the letter">
   <div class="envelope-scene">
     <p class="envelope-eyebrow">A little something for</p>
     <h1 class="envelope-name">Chiquita</h1>
     <button id="envelopeBtn" class="envelope" aria-label="Open the envelope to begin">
       <div class="envelope-back"></div>
-      <div class="envelope-letter">
-        <span class="wax-seal">C</span>
-      </div>
+      <div class="envelope-letter"><span class="wax-seal">C</span></div>
       <div class="envelope-flap"></div>
       <div class="envelope-front-left"></div>
       <div class="envelope-front-right"></div>
@@ -48,18 +55,14 @@
   </div>
 </section>
 
-<!-- ============ MAIN SITE (hidden until envelope opens) ============ -->
+<!-- ============ MAIN SITE ============ -->
 <main id="site" hidden>
 
-  <!-- floating ambient background layer -->
   <div class="ambient" aria-hidden="true">
-    <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div>
-    <div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div>
     <div class="glow g1"></div><div class="glow g2"></div>
   </div>
 
-  <!-- Music Player -->
-  <div class="music-player" id="musicPlayer">
+  <div class="music-player glass" id="musicPlayer">
     <audio id="audio" src="assets/music/youre-still-the-one.mp3" preload="metadata" loop></audio>
     <button id="playPauseBtn" class="mp-play" aria-label="Play music">
       <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -81,20 +84,20 @@
     <input type="range" id="volumeSlider" class="mp-volume" min="0" max="1" step="0.01" value="0.7" aria-label="Volume">
   </div>
 
-  <!-- ============ SECTION 3: HERO ============ -->
+  <!-- HERO -->
   <section id="hero" class="section">
-    <p class="hero-eyebrow reveal">Happy International Girlfriend Day</p>
-    <h1 class="hero-title reveal">Happy International<br>Girlfriend Day <span class="heart-inline">❤</span></h1>
-    <p class="hero-subtitle reveal">To my beautiful Chiquita</p>
-    <button class="hero-cta reveal" id="openHeartBtn">Open My Heart</button>
-    <div class="scroll-cue reveal" aria-hidden="true"><span></span></div>
+    <p class="hero-eyebrow">Happy International Girlfriend Day</p>
+    <h1 class="hero-title">Happy International<br>Girlfriend Day <span class="heart-inline">❤</span></h1>
+    <p class="hero-subtitle">To my beautiful Chiquita</p>
+    <button class="hero-cta" id="openHeartBtn">Open My Heart</button>
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
   </section>
 
-  <!-- ============ SECTION 4: LOVE LETTER ============ -->
+  <!-- LOVE LETTER -->
   <section id="letter" class="section">
     <h2 class="section-label reveal">A Letter For You</h2>
     <div class="letter-paper reveal">
-      <p class="letter-text" id="letterText" data-typewriter>
+      <p class="letter-text" id="letterText">
 Chiquita,
 
 I've started this letter more times than I can count, because nothing I write feels big enough for how grateful I am to have you. So I'm going to stop trying to make it perfect and just tell you the truth.
@@ -117,14 +120,13 @@ Always yours.
     </div>
   </section>
 
-  <!-- ============ SECTION 5: SCRAPBOOK ============ -->
+  <!-- SCRAPBOOK -->
   <section id="scrapbook" class="section">
     <h2 class="section-label reveal">Our Little Scrapbook</h2>
     <p class="section-sub reveal">tap any photo to see it bigger</p>
-    <div class="scrapbook-grid" id="scrapbookGrid"><!-- polaroids injected by script.js --></div>
+    <div class="scrapbook-grid" id="scrapbookGrid"></div>
   </section>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">&#10094;</button>
@@ -135,11 +137,13 @@ Always yours.
     <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">&#10095;</button>
   </div>
 
-  <!-- ============ SECTION 6: TIMELINE ============ -->
+  <!-- TIMELINE -->
   <section id="timeline" class="section">
     <h2 class="section-label reveal">Our Story So Far</h2>
     <div class="timeline">
-      <div class="tl-line" aria-hidden="true"></div>
+      <div class="tl-track" aria-hidden="true"></div>
+      <div class="tl-fill" aria-hidden="true"></div>
+
       <div class="tl-item reveal">
         <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7-4.35-9.5-8.8C.8 8.4 2.3 5 5.6 5c1.9 0 3.4 1 4.4 2.6C11 6 12.5 5 14.4 5c3.3 0 4.8 3.4 3.1 6.7C19 16.15 12 20.5 12 20.5z"/></svg></div>
         <div class="tl-content"><h3>The day we met</h3><p>The day everything quietly changed, even if neither of us knew it yet.</p></div>
@@ -167,56 +171,56 @@ Always yours.
     </div>
   </section>
 
-  <!-- ============ SECTION 7: REASONS I LOVE YOU ============ -->
+  <!-- REASONS -->
   <section id="reasons" class="section">
     <h2 class="section-label reveal">Reasons I Love You</h2>
     <div class="reasons-grid">
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 13.5c1 1.5 2.4 2.2 4 2.2s3-.7 4-2.2" fill="none"/><circle cx="8.7" cy="9.6" r="0.9" fill="currentColor" stroke="none"/><circle cx="15.3" cy="9.6" r="0.9" fill="currentColor" stroke="none"/></svg></span><h3>Your smile</h3><p>It changes the whole room, and my whole mood, instantly.</p></div>
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none"/><circle cx="12" cy="6.5" r="3"/><circle cx="12" cy="17.5" r="3"/><circle cx="6.5" cy="12" r="3"/><circle cx="17.5" cy="12" r="3"/></svg></span><h3>Your kindness</h3><p>You give it freely, even to people who never notice.</p></div>
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 4 3 5 5 6-2 1-5 2-5 6M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></svg></span><h3>Your patience</h3><p>Especially with me, more than I probably deserve.</p></div>
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5c1.3 2 2.8 3 4.5 3s3.2-1 4.5-3" fill="none"/><circle cx="8.7" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><circle cx="15.3" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><path d="M4.5 6.5l1.6 1.2M19.5 6.5l-1.6 1.2"/></svg></span><h3>Your laugh</h3><p>Loud, real, and honestly my favorite sound.</p></div>
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M7 9c-2 0-3.5 1.6-3.5 3.5S5 16 7 16c2.5 0 3.8-2 5-3.5 1.2 1.5 2.5 3.5 5 3.5 2 0 3.5-1.6 3.5-3.5S19.5 9 17.5 9c-2.5 0-3.8 2-5 3.5C11.3 11 10 9 7 9z"/></svg></span><h3>Your support</h3><p>You believe in me on the days I forget to believe in myself.</p></div>
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7-4.35-9.5-8.8C.8 8.4 2.3 5 5.6 5c1.9 0 3.4 1 4.4 2.6C11 6 12.5 5 14.4 5c3.3 0 4.8 3.4 3.1 6.7C19 16.15 12 20.5 12 20.5z"/></svg></span><h3>Your heart</h3><p>Soft, brave, and bigger than you realize.</p></div>
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M4 8c0 5 3 9 8 11 5-2 8-6 8-11" fill="none"/><path d="M8 9c0 3.2 1.8 5.6 4 7 2.2-1.4 4-3.8 4-7" fill="none"/></svg></span><h3>Your hugs</h3><p>The kind that fix a bad day without a single word.</p></div>
-      <div class="reason-card reveal"><span class="reason-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3c.6 3.4 2 5.6 5 6.5-3 .9-4.4 3.1-5 6.5-.6-3.4-2-5.6-5-6.5 3-.9 4.4-3.1 5-6.5z"/></svg></span><h3>Your personality</h3><p>There's genuinely no one else like you, and I mean that.</p></div>
+      <div class="reason-card glass reveal" style="--d:.02s"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 13.5c1 1.5 2.4 2.2 4 2.2s3-.7 4-2.2" fill="none"/><circle cx="8.7" cy="9.6" r="0.9" fill="currentColor" stroke="none"/><circle cx="15.3" cy="9.6" r="0.9" fill="currentColor" stroke="none"/></svg></span><h3>Your smile</h3><p>It changes the whole room, and my whole mood, instantly.</p></div>
+      <div class="reason-card glass reveal" style="--d:.08s"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none"/><circle cx="12" cy="6.5" r="3"/><circle cx="12" cy="17.5" r="3"/><circle cx="6.5" cy="12" r="3"/><circle cx="17.5" cy="12" r="3"/></svg></span><h3>Your kindness</h3><p>You give it freely, even to people who never notice.</p></div>
+      <div class="reason-card glass reveal" style="--d:.14s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 4 3 5 5 6-2 1-5 2-5 6M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></svg></span><h3>Your patience</h3><p>Especially with me, more than I probably deserve.</p></div>
+      <div class="reason-card glass reveal" style="--d:.2s"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5c1.3 2 2.8 3 4.5 3s3.2-1 4.5-3" fill="none"/><circle cx="8.7" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><circle cx="15.3" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><path d="M4.5 6.5l1.6 1.2M19.5 6.5l-1.6 1.2"/></svg></span><h3>Your laugh</h3><p>Loud, real, and honestly my favorite sound.</p></div>
+      <div class="reason-card glass reveal" style="--d:.02s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M7 9c-2 0-3.5 1.6-3.5 3.5S5 16 7 16c2.5 0 3.8-2 5-3.5 1.2 1.5 2.5 3.5 5 3.5 2 0 3.5-1.6 3.5-3.5S19.5 9 17.5 9c-2.5 0-3.8 2-5 3.5C11.3 11 10 9 7 9z"/></svg></span><h3>Your support</h3><p>You believe in me on the days I forget to believe in myself.</p></div>
+      <div class="reason-card glass reveal" style="--d:.08s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7-4.35-9.5-8.8C.8 8.4 2.3 5 5.6 5c1.9 0 3.4 1 4.4 2.6C11 6 12.5 5 14.4 5c3.3 0 4.8 3.4 3.1 6.7C19 16.15 12 20.5 12 20.5z"/></svg></span><h3>Your heart</h3><p>Soft, brave, and bigger than you realize.</p></div>
+      <div class="reason-card glass reveal" style="--d:.14s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M4 8c0 5 3 9 8 11 5-2 8-6 8-11" fill="none"/><path d="M8 9c0 3.2 1.8 5.6 4 7 2.2-1.4 4-3.8 4-7" fill="none"/></svg></span><h3>Your hugs</h3><p>The kind that fix a bad day without a single word.</p></div>
+      <div class="reason-card glass reveal" style="--d:.2s"><span class="reason-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3c.6 3.4 2 5.6 5 6.5-3 .9-4.4 3.1-5 6.5-.6-3.4-2-5.6-5-6.5 3-.9 4.4-3.1 5-6.5z"/></svg></span><h3>Your personality</h3><p>There's genuinely no one else like you, and I mean that.</p></div>
     </div>
   </section>
 
-  <!-- ============ SECTION 8: QUOTES ============ -->
+  <!-- QUOTES -->
   <section id="quotes" class="section">
-    <div class="quote-stage">
-      <p class="quote-text" id="quoteText" data-quote-index="0"></p>
-    </div>
+    <div class="quote-stage"><p class="quote-text" id="quoteText"></p></div>
   </section>
 
-  <!-- ============ SECTION 9: FUTURE DREAMS ============ -->
+  <!-- FUTURE DREAMS -->
   <section id="dreams" class="section">
     <h2 class="section-label reveal">Everything Still Ahead of Us</h2>
     <div class="dreams-grid">
-      <div class="dream-card reveal"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M2 13l19-8-7 19-2.5-8.5L2 13z" stroke-linejoin="round"/></svg></span><h3>Travel</h3><p>New cities, new views, same two people exploring them together.</p></div>
-      <div class="dream-card reveal"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke-linejoin="round"/></svg></span><h3>Home</h3><p>A place that's really ours — messy, warm, and full of us.</p></div>
-      <div class="dream-card reveal"><span class="dream-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="10" r="4.2"/><circle cx="15" cy="10" r="4.2"/><circle cx="12" cy="15" r="4.2"/></svg></span><h3>Family</h3><p>Whatever that ends up looking like for us, I want it with you.</p></div>
-      <div class="dream-card reveal"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M12 21V11" stroke-linecap="round"/><path d="M12 11c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 15c0-3-2.5-4.5-5.5-4.5 0 3 2.5 4.5 5.5 4.5z"/></svg></span><h3>Growing together</h3><p>Becoming better people, side by side, at our own pace.</p></div>
+      <div class="dream-card glass reveal" style="--d:.02s"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M2 13l19-8-7 19-2.5-8.5L2 13z" stroke-linejoin="round"/></svg></span><h3>Travel</h3><p>New cities, new views, same two people exploring them together.</p></div>
+      <div class="dream-card glass reveal" style="--d:.08s"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke-linejoin="round"/></svg></span><h3>Home</h3><p>A place that's really ours — messy, warm, and full of us.</p></div>
+      <div class="dream-card glass reveal" style="--d:.14s"><span class="dream-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="10" r="4.2"/><circle cx="15" cy="10" r="4.2"/><circle cx="12" cy="15" r="4.2"/></svg></span><h3>Family</h3><p>Whatever that ends up looking like for us, I want it with you.</p></div>
+      <div class="dream-card glass reveal" style="--d:.2s"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M12 21V11" stroke-linecap="round"/><path d="M12 11c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 15c0-3-2.5-4.5-5.5-4.5 0 3 2.5 4.5 5.5 4.5z"/></svg></span><h3>Growing together</h3><p>Becoming better people, side by side, at our own pace.</p></div>
     </div>
   </section>
 
-  <!-- ============ SECTION 10: FINAL SURPRISE ============ -->
+  <!-- FINALE -->
   <section id="finale" class="section">
-    <div class="finale-heart-wrap reveal">
-      <div class="finale-heart">❤</div>
+    <div class="finale-heart-wrap"><div class="finale-heart">❤</div></div>
+    <div class="finale-lines">
+      <p class="finale-line">I choose you.</p>
+      <p class="finale-line">Today.</p>
+      <p class="finale-line">Tomorrow.</p>
+      <p class="finale-line">Always.</p>
     </div>
-    <p class="finale-text reveal">I choose you.<br>Today. Tomorrow. Always.</p>
-    <button id="finaleBtn" class="finale-btn reveal">Tap here, Chiquita</button>
+    <button id="finaleBtn" class="finale-btn">Tap here, Chiquita</button>
     <canvas id="burstCanvas"></canvas>
   </section>
 
-  <!-- ============ SECTION 11: FOOTER ============ -->
   <footer id="footer">
     <p>Made with all my love, for Chiquita <span aria-hidden="true">❤️</span></p>
   </footer>
 
 </main>
 
-<script src="script.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
