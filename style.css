@@ -618,7 +618,7 @@ input[type="range"]::-moz-range-thumb {
   background: var(--white);
   box-shadow: 0 10px 24px -10px rgba(110,47,59,.3);
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
+  color: var(--rose-gold);
   flex-shrink: 0;
   z-index: 1;
 }
@@ -651,7 +651,23 @@ input[type="range"]::-moz-range-thumb {
   transform: translateY(-8px);
   box-shadow: 0 22px 40px -16px rgba(110,47,59,.4);
 }
-.reason-icon, .dream-icon { font-size: 30px; display: block; margin-bottom: 12px; }
+.reason-icon, .dream-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  margin: 0 auto 14px;
+  color: var(--rose-gold);
+}
+.tl-icon svg, .reason-icon svg, .dream-icon svg {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.reason-icon svg, .dream-icon svg { width: 100%; height: 100%; }
+.tl-icon svg { width: 24px; height: 24px; }
 .reason-card h3, .dream-card h3 { font-size: 20px; margin-bottom: 8px; font-style: italic; }
 .reason-card p, .dream-card p { margin: 0; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
 

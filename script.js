@@ -124,9 +124,9 @@
      6. SCRAPBOOK — build 10 polaroids + lightbox
      --------------------------------------------------------- */
   const captions = [
-    'My favorite dress', 'us, being us', 'my favorite face', 'My squeeze face',
-    'In your era', 'Our First Pizza', 'again, please',
-    'you, mid-laugh', 'those pretty eyes of yours', 'always'
+    'that day', 'us, being us', 'my favorite face', 'somewhere new',
+    'laughing about nothing', 'the good kind of tired', 'again, please',
+    'you, mid-laugh', 'quiet moments', 'always'
   ];
   const rotations = [-6, 4, -3, 7, -8, 2, -4, 6, -2, 5];
 
@@ -368,23 +368,39 @@
   }
   window.addEventListener('resize', resizeBurstCanvas);
 
-  const burstShapes = ['❤', '✨', '🌸', '💫'];
+  // brand-palette confetti: rose gold, gold, blush, beige, ink
+  const burstColors = ['#c8918a', '#d8a566', '#f3d3d8', '#e9c9a9', '#6e2f3b'];
+
+  function drawHeartPath(ctx, size) {
+    const s = size / 10;
+    ctx.beginPath();
+    ctx.moveTo(0, 2.4 * s);
+    ctx.bezierCurveTo(-5 * s, -2 * s, -4.6 * s, -6 * s, 0, -3.6 * s);
+    ctx.bezierCurveTo(4.6 * s, -6 * s, 5 * s, -2 * s, 0, 2.4 * s);
+    ctx.closePath();
+  }
 
   function spawnBurst() {
     resizeBurstCanvas();
     const cx = burstCanvas.width / 2;
     const cy = burstCanvas.height / 2;
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 55; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 6 + 2;
+      const speed = Math.random() * 11 + 7;           // fast launch — a real "pop"
+      const roll = Math.random();
+      const type = roll < 0.45 ? 'rect' : (roll < 0.75 ? 'heart' : 'dot');
       burstParticles.push({
         x: cx, y: cy,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 2,
+        vy: Math.sin(angle) * speed - 3,
         life: 1,
-        size: Math.random() * 16 + 12,
-        char: burstShapes[Math.floor(Math.random() * burstShapes.length)],
-        spin: (Math.random() - 0.5) * 0.2
+        decay: Math.random() * 0.012 + 0.015,          // clears the screen quickly
+        size: type === 'rect' ? Math.random() * 7 + 5 : Math.random() * 6 + 4,
+        color: burstColors[Math.floor(Math.random() * burstColors.length)],
+        type,
+        rotation: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.35,
+        flutter: Math.random() * Math.PI * 2
       });
     }
     if (!burstRunning) { burstRunning = true; requestAnimationFrame(animateBurst); }
@@ -393,22 +409,36 @@
   function animateBurst() {
     burstCtx.clearRect(0, 0, burstCanvas.width, burstCanvas.height);
     burstParticles.forEach(p => {
+      p.vx *= 0.985;        // air drag slows the spread
+      p.vy += 0.2;          // gravity pulls it down at a real, snappy rate
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.08; // gravity
-      p.life -= 0.012;
-      p.rotation = (p.rotation || 0) + p.spin;
+      p.life -= p.decay;
+      p.rotation += p.spin;
+      p.flutter += 0.28;
 
       burstCtx.save();
       burstCtx.globalAlpha = Math.max(p.life, 0);
       burstCtx.translate(p.x, p.y);
       burstCtx.rotate(p.rotation);
-      burstCtx.font = `${p.size}px sans-serif`;
-      burstCtx.textAlign = 'center';
-      burstCtx.fillText(p.char, 0, 0);
+      burstCtx.fillStyle = p.color;
+
+      if (p.type === 'rect') {
+        // paper-ribbon flip illusion as it falls, like real confetti tumbling
+        const flip = Math.cos(p.flutter);
+        burstCtx.scale(flip, 1);
+        burstCtx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.66);
+      } else if (p.type === 'heart') {
+        drawHeartPath(burstCtx, p.size);
+        burstCtx.fill();
+      } else {
+        burstCtx.beginPath();
+        burstCtx.arc(0, 0, p.size / 2.6, 0, Math.PI * 2);
+        burstCtx.fill();
+      }
       burstCtx.restore();
     });
-    burstParticles = burstParticles.filter(p => p.life > 0);
+    burstParticles = burstParticles.filter(p => p.life > 0 && p.y < burstCanvas.height + 60);
 
     if (burstParticles.length > 0) {
       requestAnimationFrame(animateBurst);
@@ -419,9 +449,10 @@
   }
 
   finaleBtn.addEventListener('click', () => {
+    // three quick, tight pulses instead of slow spaced-out waves — feels like a confetti cannon
     spawnBurst();
-    setTimeout(spawnBurst, 200);
-    setTimeout(spawnBurst, 400);
+    setTimeout(spawnBurst, 90);
+    setTimeout(spawnBurst, 180);
   });
 
   /* ---------------------------------------------------------
