@@ -5,7 +5,7 @@
 const CAPTIONS = [
   'My favorite Dress', 'us, being us', 'my favorite face', 'My squeeze Face',
   'In your era', 'First Pizza', 'again, please',
-  'you, mid-laugh', 'quiet moments', 'Always'
+  'you, mid-laugh', 'Those pretty eyes of yours', 'Always'
 ];
 const ROTATIONS = [-6, 4, -3, 7, -8, 2, -4, 6, -2, 5];
 
