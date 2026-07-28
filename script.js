@@ -124,9 +124,9 @@
      6. SCRAPBOOK — build 10 polaroids + lightbox
      --------------------------------------------------------- */
   const captions = [
-    'that day', 'us, being us', 'my favorite face', 'somewhere new',
-    'laughing about nothing', 'the good kind of tired', 'again, please',
-    'you, mid-laugh', 'quiet moments', 'always'
+    'My favorite dress', 'us, being us', 'my favorite face', 'My squeeze face',
+    'In your era', 'Our First Pizza', 'again, please',
+    'you, mid-laugh', 'those pretty eyes of yours', 'always'
   ];
   const rotations = [-6, 4, -3, 7, -8, 2, -4, 6, -2, 5];
 
