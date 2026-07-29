@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Happy International Girlfriend Day, Chiquita ❤️</title>
+<meta name="description" content="A love letter, a scrapbook, and a promise — for Chiquita, on International Girlfriend Day.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/scrapbook.css">
+<link rel="stylesheet" href="css/effects.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<canvas id="sparkle-canvas"></canvas>
+
+<!-- ============ LOADER ============ -->
+<section id="loader" aria-label="Loading">
+  <div class="loader-heart-ring">
+    <svg viewBox="0 0 90 90">
+      <defs>
+        <linearGradient id="loaderGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#c8918a"/>
+          <stop offset="1" stop-color="#d8a566"/>
+        </linearGradient>
+      </defs>
+      <circle class="ring-track" cx="45" cy="45" r="40"/>
+      <circle id="ringFill" class="ring-fill" cx="45" cy="45" r="40"/>
+    </svg>
+    <div class="loader-heart-glyph"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+  </div>
+  <p class="loader-word">for Chiquita</p>
+  <p class="loader-percent" id="loaderPercent">0%</p>
+</section>
+
+<!-- ============ ENVELOPE GATE ============ -->
+<section id="envelope-gate" aria-label="Open the letter">
+  <div class="envelope-scene">
+    <p class="envelope-eyebrow">A little something for</p>
+    <h1 class="envelope-name">Chiquita</h1>
+    <button id="envelopeBtn" class="envelope" aria-label="Open the envelope to begin">
+      <div class="envelope-back"></div>
+      <div class="envelope-letter"><span class="wax-seal">C</span></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-front-left"></div>
+      <div class="envelope-front-right"></div>
+    </button>
+    <p class="envelope-hint">tap the envelope</p>
+  </div>
+</section>
+
+<!-- ============ MAIN SITE ============ -->
+<main id="site" hidden>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="glow g1"></div><div class="glow g2"></div>
+  </div>
+
+  <div class="music-player glass" id="musicPlayer">
+    <audio id="audio" src="assets/music/youre-still-the-one.mp3" preload="metadata" loop></audio>
+    <button id="playPauseBtn" class="mp-play" aria-label="Play music">
+      <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="iconPause" viewBox="0 0 24 24" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <div class="mp-info">
+      <p class="mp-title">You're Still The One</p>
+      <p class="mp-artist">Shania Twain</p>
+    </div>
+    <div class="mp-progress-wrap">
+      <span class="mp-time" id="mpCurrent">0:00</span>
+      <input type="range" id="mpSeek" class="mp-seek" min="0" max="100" value="0" aria-label="Seek">
+      <span class="mp-time" id="mpDuration">0:00</span>
+    </div>
+    <button id="muteBtn" class="mp-mute" aria-label="Mute">
+      <svg id="iconVolUp" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+      <svg id="iconVolMute" viewBox="0 0 24 24" hidden><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.45 2.45c.03-.21.05-.43.05-.65zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.9 8.9 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+    </button>
+    <input type="range" id="volumeSlider" class="mp-volume" min="0" max="1" step="0.01" value="0.7" aria-label="Volume">
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="section">
+    <p class="hero-eyebrow">Happy International Girlfriend Day</p>
+    <h1 class="hero-title">Happy International<br>Girlfriend Day <span class="heart-inline"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></h1>
+    <p class="hero-subtitle">To my beautiful Chiquita</p>
+    <button class="hero-cta" id="openHeartBtn">Open My Heart</button>
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- LOVE LETTER -->
+  <section id="letter" class="section">
+    <h2 class="section-label reveal">A Letter For You</h2>
+    <div class="letter-paper reveal">
+      <p class="letter-text" id="letterText">
+Chiquita,
+
+I've started this letter more times than I can count, because nothing I write feels big enough for how grateful I am to have you. So I'm going to stop trying to make it perfect and just tell you the truth.
+
+You make ordinary days feel like something worth remembering. A quiet Tuesday, a bad-traffic afternoon, a night when neither of us had plans — you turn all of it into something I look forward to. I don't think you know how rare that is.
+
+I'm grateful for the small things most people never see: the way you check in on me without making it a big deal, the way you laugh at your own jokes before you finish telling them, the way you show up for the people you love without being asked. I notice. I notice all of it.
+
+I think about the memories we've already made and I smile without even meaning to — and then I think about everything we haven't done yet, and I get excited all over again. There's a version of our future I keep imagining, and in every version, you're there.
+
+I'm proud of you. Not in a small way — in the way where I watch you handle hard things with more grace than you give yourself credit for, and I want to tell everyone I know how lucky I am.
+
+So today isn't really about a holiday. It's just an excuse for me to say, out loud, in writing, where you can't scroll past it too fast: thank you for choosing me, for staying, for being exactly who you are.
+
+Happy International Girlfriend Day, Chiquita.
+
+Love,
+Always yours.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCRAPBOOK -->
+  <section id="scrapbook" class="section">
+    <h2 class="section-label reveal">Our Little Scrapbook</h2>
+    <p class="section-sub reveal">tap any photo to see it bigger</p>
+    <div class="scrapbook-grid" id="scrapbookGrid"></div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">&#10094;</button>
+    <div class="lb-frame">
+      <img id="lbImage" src="" alt="">
+      <p class="lb-caption" id="lbCaption"></p>
+    </div>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">&#10095;</button>
+  </div>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="section">
+    <h2 class="section-label reveal">Our Story So Far</h2>
+    <div class="timeline">
+      <div class="tl-track" aria-hidden="true"></div>
+      <div class="tl-fill" aria-hidden="true"></div>
+
+      <div class="tl-item reveal">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+        <div class="tl-content"><h3>The day we met</h3><p>The day everything quietly changed, even if neither of us knew it yet.</p></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3c.6 3.4 2 5.6 5 6.5-3 .9-4.4 3.1-5 6.5-.6-3.4-2-5.6-5-6.5 3-.9 4.4-3.1 5-6.5z"/></svg></div>
+        <div class="tl-content"><h3>Our first date</h3><p>Nervous laughs, too much talking, and a feeling I didn't want to end.</p></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5c1.3 2 2.8 3 4.5 3s3.2-1 4.5-3" fill="none"/><circle cx="8.7" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><circle cx="15.3" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><path d="M4.5 6.5l1.6 1.2M19.5 6.5l-1.6 1.2"/></svg></div>
+        <div class="tl-content"><h3>Our funniest memory</h3><p>The one we still bring up when we need to laugh until it hurts.</p></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" fill="currentColor" stroke="none"/></svg></div>
+        <div class="tl-content"><h3>Our adventures</h3><p>Every trip, every new place, made better only because you were there.</p></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+        <div class="tl-content"><h3>Today</h3><p>Still choosing you. Still grateful. Still not over how lucky I am.</p></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/></svg></div>
+        <div class="tl-content"><h3>Forever</h3><p>Wherever this goes, I already know I want to go there with you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section id="reasons" class="section">
+    <h2 class="section-label reveal">Reasons I Love You</h2>
+    <div class="reasons-grid">
+      <div class="reason-card glass reveal" style="--d:.02s"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 13.5c1 1.5 2.4 2.2 4 2.2s3-.7 4-2.2" fill="none"/><circle cx="8.7" cy="9.6" r="0.9" fill="currentColor" stroke="none"/><circle cx="15.3" cy="9.6" r="0.9" fill="currentColor" stroke="none"/></svg></span><h3>Your smile</h3><p>It changes the whole room, and my whole mood, instantly.</p></div>
+      <div class="reason-card glass reveal" style="--d:.08s"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none"/><circle cx="12" cy="6.5" r="3"/><circle cx="12" cy="17.5" r="3"/><circle cx="6.5" cy="12" r="3"/><circle cx="17.5" cy="12" r="3"/></svg></span><h3>Your kindness</h3><p>You give it freely, even to people who never notice.</p></div>
+      <div class="reason-card glass reveal" style="--d:.14s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 4 3 5 5 6-2 1-5 2-5 6M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></svg></span><h3>Your patience</h3><p>Especially with me, more than I probably deserve.</p></div>
+      <div class="reason-card glass reveal" style="--d:.2s"><span class="reason-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5c1.3 2 2.8 3 4.5 3s3.2-1 4.5-3" fill="none"/><circle cx="8.7" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><circle cx="15.3" cy="9.4" r="0.9" fill="currentColor" stroke="none"/><path d="M4.5 6.5l1.6 1.2M19.5 6.5l-1.6 1.2"/></svg></span><h3>Your laugh</h3><p>Loud, real, and honestly my favorite sound.</p></div>
+      <div class="reason-card glass reveal" style="--d:.02s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M7 9c-2 0-3.5 1.6-3.5 3.5S5 16 7 16c2.5 0 3.8-2 5-3.5 1.2 1.5 2.5 3.5 5 3.5 2 0 3.5-1.6 3.5-3.5S19.5 9 17.5 9c-2.5 0-3.8 2-5 3.5C11.3 11 10 9 7 9z"/></svg></span><h3>Your support</h3><p>You believe in me on the days I forget to believe in myself.</p></div>
+      <div class="reason-card glass reveal" style="--d:.08s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span><h3>Your heart</h3><p>Soft, brave, and bigger than you realize.</p></div>
+      <div class="reason-card glass reveal" style="--d:.14s"><span class="reason-icon"><svg viewBox="0 0 24 24"><path d="M4 8c0 5 3 9 8 11 5-2 8-6 8-11" fill="none"/><path d="M8 9c0 3.2 1.8 5.6 4 7 2.2-1.4 4-3.8 4-7" fill="none"/></svg></span><h3>Your hugs</h3><p>The kind that fix a bad day without a single word.</p></div>
+      <div class="reason-card glass reveal" style="--d:.2s"><span class="reason-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3c.6 3.4 2 5.6 5 6.5-3 .9-4.4 3.1-5 6.5-.6-3.4-2-5.6-5-6.5 3-.9 4.4-3.1 5-6.5z"/></svg></span><h3>Your personality</h3><p>There's genuinely no one else like you, and I mean that.</p></div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section id="quotes" class="section">
+    <div class="quote-stage"><p class="quote-text" id="quoteText"></p></div>
+  </section>
+
+  <!-- FUTURE DREAMS -->
+  <section id="dreams" class="section">
+    <h2 class="section-label reveal">Everything Still Ahead of Us</h2>
+    <div class="dreams-grid">
+      <div class="dream-card glass reveal" style="--d:.02s"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M2 13l19-8-7 19-2.5-8.5L2 13z" stroke-linejoin="round"/></svg></span><h3>Travel</h3><p>New cities, new views, same two people exploring them together.</p></div>
+      <div class="dream-card glass reveal" style="--d:.08s"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke-linejoin="round"/></svg></span><h3>Home</h3><p>A place that's really ours — messy, warm, and full of us.</p></div>
+      <div class="dream-card glass reveal" style="--d:.14s"><span class="dream-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="10" r="4.2"/><circle cx="15" cy="10" r="4.2"/><circle cx="12" cy="15" r="4.2"/></svg></span><h3>Family</h3><p>Whatever that ends up looking like for us, I want it with you.</p></div>
+      <div class="dream-card glass reveal" style="--d:.2s"><span class="dream-icon"><svg viewBox="0 0 24 24"><path d="M12 21V11" stroke-linecap="round"/><path d="M12 11c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 15c0-3-2.5-4.5-5.5-4.5 0 3 2.5 4.5 5.5 4.5z"/></svg></span><h3>Growing together</h3><p>Becoming better people, side by side, at our own pace.</p></div>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section id="finale" class="section">
+    <div class="finale-heart-wrap"><div class="finale-heart">
+      <svg viewBox="0 0 24 24">
+        <defs>
+          <linearGradient id="finaleHeartGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#c8918a"/>
+            <stop offset="1" stop-color="#d8a566"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#finaleHeartGrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </div></div>
+    <p class="finale-popup" id="finalePopup">I Love You</p>
+    <div class="finale-lines">
+      <p class="finale-line"><span class="finale-word">I</span> <span class="finale-word">choose</span> <span class="finale-word">you.</span></p>
+      <p class="finale-line"><span class="finale-word">Today.</span></p>
+      <p class="finale-line"><span class="finale-word">Tomorrow.</span></p>
+      <p class="finale-line"><span class="finale-word">Always.</span></p>
+    </div>
+    <button id="finaleBtn" class="finale-btn">Tap here, Chiquita</button>
+    <canvas id="burstCanvas"></canvas>
+  </section>
+
+  <footer id="footer">
+    <p>Made with all my love, for Chiquita <span class="footer-heart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></p>
+  </footer>
+
+</main>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

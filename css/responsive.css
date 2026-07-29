@@ -1,0 +1,22 @@
+/* =========================================================
+   RESPONSIVE — breakpoint overrides only
+   Loaded last so these rules win the cascade.
+   ========================================================= */
+
+@media (min-width: 640px) {
+  .mp-info { display: block; }
+  .mp-volume { display: block; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 90px 6vw; }
+  .music-player { padding: 6px 12px; gap: 8px; }
+  .polaroid { width: clamp(120px, 40vw, 160px); }
+  /* tilt-on-hover is a desktop affordance; keep photos flat on touch screens */
+  .polaroid { transform: rotate(var(--rot)) !important; }
+}
+
+@media (pointer: coarse) {
+  .polaroid { transform: rotate(var(--rot)) !important; }
+  .polaroid::after { display: none; }
+}
